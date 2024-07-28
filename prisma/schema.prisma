@@ -1,0 +1,44 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = "mongodb://mongo1:30001,mongo2:30002,mongo3:30003/wow3?replicaSet=my-replica-set"
+}
+
+enum CollectionType {
+  Axie
+  Land
+  Item
+  MysticAxie
+}
+
+model Collection {
+  id          String         @id @default(auto()) @map("_id") @db.ObjectId
+  type        CollectionType
+  name        String
+  description String?        @default("")
+  image       String?        @default("")
+  item        Item[]
+  status      Int            @default(1)
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+}
+
+model Item {
+  id           String     @id @default(auto()) @map("_id") @db.ObjectId
+  name         String
+  image        String
+  tokenId      String
+  owner        String
+  metadata     Json
+  collection   Collection @relation(fields: [collectionId], references: [id])
+  collectionId String     @db.ObjectId
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  @@unique([tokenId])
+  @@index([owner])
+  @@index([collectionId])
+}
