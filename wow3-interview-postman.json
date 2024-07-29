@@ -1,0 +1,243 @@
+{
+	"info": {
+		"_postman_id": "39ee87b8-32fe-42b1-b588-29fb542373b6",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Collection",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"My Collection 2\",\n  \"description\": \"This is a description\",\n  \"image\": \"http://example.com/image.png\",\n  \"type\": \"Axie\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/collections",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"collections"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Collection",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Updated Collection\",\n  \"description\": \"Updated description\",\n  \"image\": \"http://example.com/updated-image.png\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/collections/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"collections",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Collection",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/collections",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"collections"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Collection By Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/collections/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"collections",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Item",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"My Item\",\n  \"collectionId\": 1,\n  \"image\": \"http://example.com/item-image.png\",\n  \"owner\": \"owner_address\",\n  \"metadata\": \"{\\\"key\\\": \\\"value\\\"}\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/items",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"items"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Item",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Updated Item\",\n  \"collectionId\": 1,\n  \"image\": \"http://example.com/updated-item-image.png\",\n  \"owner\": \"updated_owner_address\",\n  \"metadata\": \"{\\\"key\\\": \\\"updated_value\\\"}\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/items/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"items",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Items",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/items",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"items"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Item By Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/items/66a66693cfc78f34693b596e",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"items",
+						"66a66693cfc78f34693b596e"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Items By Collection Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/items/collection/66a663038d71217c417e84ef",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"items",
+						"collection",
+						"66a663038d71217c417e84ef"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Items By Owner",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/items/owner/owner_address",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"items",
+						"owner",
+						"owner_address"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

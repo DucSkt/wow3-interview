@@ -5,7 +5,7 @@ This is an API for managing NFT collections and items. The API is built with Nes
 ## Table of Contents
 
 - [Build Project] (docker-compose up --build)
-- [Postman] (https://drive.google.com/file/d/1JVgvmIrdnfWIjiOt3927Q-R3uTgBexQ8/view?usp=sharing)
+- [Postman] (import wow3-interview-postman.json file in project into postman to see api test)
 
 - [Endpoints](#endpoints)
   - [Collection Endpoints](#collection-endpoints)
