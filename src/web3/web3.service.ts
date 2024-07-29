@@ -1,8 +1,8 @@
 import Web3 from 'web3';
-import fetch from 'node-fetch';
 import { ContractAddresses } from '~/common/address';
 import { AxieAbi } from '~/common/abi';
 import { RoninChainRPC } from '~/common/api';
+import axios from 'axios';
 
 export class Web3Service {
   axieContract;
@@ -12,7 +12,7 @@ export class Web3Service {
     this.axieContract = new web3.eth.Contract(AxieAbi, ContractAddresses);
   }
 
-  async fetchAxieDetail(tokenIds: number[]) {
+  async fetchAxieDetail(tokenIds) {
     try {
       const dataPromises = tokenIds.map(async (tokenId) => {
         const owner = await this.axieContract.methods.ownerOf(tokenId).call();
@@ -23,17 +23,19 @@ export class Web3Service {
       });
       const dataResults = await Promise.all(dataPromises);
       const metadataPromises = dataResults.map(async ({ tokenURI }) => {
-        const response = await fetch(tokenURI);
-        return response.json();
+        const response = await axios.get(tokenURI);
+        return response.data;
       });
       const metadataResults = await Promise.all(metadataPromises);
-      return dataResults.map((data, index) => ({
-        name: metadataResults[index].name,
-        tokenId: data.tokenId.toString(),
-        image: metadataResults[index].image,
-        owner: data.owner,
-        metadata: metadataResults[index].properties,
-      }));
+      return dataResults.map((data, index) => {
+        return {
+          name: metadataResults[index].name,
+          tokenId: data.tokenId.toString(),
+          image: metadataResults[index].image,
+          owner: data.owner,
+          metadata: metadataResults[index].properties,
+        };
+      });
     } catch (error) {
       console.error('Error fetching data:', error);
     }

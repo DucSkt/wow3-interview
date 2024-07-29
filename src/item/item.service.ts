@@ -177,7 +177,6 @@ export class ItemService {
       this.collectionService.findOneByType(CollectionType.Axie),
       this.web3Service.fetchAxieFromContract(),
     ]);
-
     axies.forEach((axie: any) => {
       axie.collectionId = collection.id;
     });
