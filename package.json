@@ -39,6 +39,7 @@
     "run-script-webpack-plugin": "^0.0.11",
     "rxjs": "^7.8.1",
     "swc-loader": "^0.2.6",
+    "web3": "^4.11.1",
     "webpack": "^5.70.0",
     "webpack-node-externals": "^3.0.0"
   },

@@ -49,7 +49,7 @@ export class ItemController {
   }
 
   @Get('nft/ronin')
-  fetchNftRonin() {
-    return this.itemService.fetchNftCollections();
+  fetchNftRoninV2() {
+    return this.itemService.fetchNftCollectionsV2();
   }
 }

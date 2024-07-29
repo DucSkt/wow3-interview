@@ -8,12 +8,14 @@ import { CollectionType, Prisma } from '@prisma/client';
 import axios from 'axios';
 import { ContractAddresses } from '~/common/address';
 import { CollectionService } from '~/collection/collection.service';
+import { Web3Service } from '~/web3/web3.service';
 
 @Injectable()
 export class ItemService {
   constructor(
     private prisma: PrismaService,
     private collectionService: CollectionService,
+    private web3Service: Web3Service,
   ) {}
 
   async create(data: Prisma.ItemCreateInput) {
@@ -167,6 +169,19 @@ export class ItemService {
       };
     });
     await this.createMany(nfts);
+    return true;
+  }
+
+  async fetchNftCollectionsV2(): Promise<boolean> {
+    const [collection, axies] = await Promise.all([
+      this.collectionService.findOneByType(CollectionType.Axie),
+      this.web3Service.fetchAxieFromContract(),
+    ]);
+
+    axies.forEach((axie: any) => {
+      axie.collectionId = collection.id;
+    });
+    await this.createMany(axies as Prisma.ItemCreateManyInput[]);
     return true;
   }
 }
